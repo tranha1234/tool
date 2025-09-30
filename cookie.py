@@ -23,9 +23,12 @@ def process_cookie(file_name):
     file_path = os.path.join(os.getcwd(), file_name)
 
     # Đọc file cookie
-    with open(file_path, "r", encoding="utf-8") as f:
-        lines = f.read().splitlines()
-
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+    except Exception as e:
+        print(f"\nkhông có file tên: {file_name}")
+        return
     # Chuẩn hóa: thay ":" thành "=" cho đồng bộ
     cookie_string = "; ".join(
         line.strip().replace(": ", "=").replace(":", "=")
